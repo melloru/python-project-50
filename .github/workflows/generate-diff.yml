@@ -7,9 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Install dependencies
+        run: |
+          pip install poetry
+          make install
+#      - name: Set up Python
+#        uses: actions/setup-python@v4
       - name: Run linter and pytes
         run: |
+          poetry install
           make lint
           poetry run pytest
