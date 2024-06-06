@@ -1,0 +1,13 @@
+name: diff
+run-name: Eugene
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run linter and pytes
+        run: |
+          make lint
+          poetry run pytest
