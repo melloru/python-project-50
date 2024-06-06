@@ -2,6 +2,4 @@ dist/
 *.pyc
 .venv/
 .pytest_cache/
-file1.json
-file2.json
 .idea/
