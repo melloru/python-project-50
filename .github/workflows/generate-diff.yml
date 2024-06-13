@@ -18,8 +18,8 @@ jobs:
           poetry run pytest
       - name: Test coverage
         run: |
-          uses: paambaati/codeclimate-action@v5.0.0
-          if: github.ref_name == 'main'
+        uses: paambaati/codeclimate-action@v5.0.0
+        if: github.ref_name == 'main'
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
