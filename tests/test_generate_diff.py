@@ -16,6 +16,5 @@ def test_json(file1, file2, result):
      'tests/fixtures/yaml/file2.yaml',
      'tests/fixtures/yaml/result_yaml')
 ])
-def test_json(file1, file2, result):
+def test_yaml(file1, file2, result):
     assert generate_diff(file1, file2) == open(result).read()
-
