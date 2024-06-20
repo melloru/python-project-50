@@ -1,0 +1,15 @@
+{
+  "common": {
+    "setting1": "Value 1",
+    "setting3": true,
+    "setting5": {
+      "key5": "value"
+    },
+    "setting6": {
+      "key": "value",
+      "doge": {
+        "wow": 1
+      }
+    }
+  }
+}

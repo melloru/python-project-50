@@ -1,0 +1,18 @@
+{
+      common: {
+        + follow: false
+          setting1: Value 1
+        - setting3: true
+        + setting3: null
+          setting5: {
+            - key5: value
+            + key5: value5
+        }
+        - setting6: {
+            key: value
+            doge: {
+                wow: 1
+            }
+        }
+    }
+}
