@@ -27,7 +27,7 @@ def transformation(diff, depth=4):
         if status == 'DICT':
             res.append(
                 f'{depth * " "}{key}: '
-                f'{{\n{format(value, depth + 4)}\n{" " * (depth + 1)}}}'
+                f'{{\n{transformation(value, depth + 4)}\n{" " * (depth + 1)}}}'
             )
         elif status == 'ADDED':
             add(value, '+')
