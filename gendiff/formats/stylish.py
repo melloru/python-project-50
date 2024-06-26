@@ -1,24 +1,47 @@
-import itertools
+def to_str(value, depth):
+    if isinstance(value, bool):
+        return 'true' if value else 'false'
+    elif value is None:
+        return 'null'
+    elif isinstance(value, dict):
+        result = []
+        for k, v in value.items():
+            result.append(f'{k}: {to_str(v, depth + 4)}')
+        result = f'\n{" " * (depth + 4)}'.join(result)
+        return f'{{\n{" " * (depth + 4)}{result}\n{" " * (depth + 1)}}}'
+    elif value == '':
+        return None
+    return value
 
 
-def to_format(diff, replacer=' ', spaces_count=4):
+def transformation(diff, depth=4):
 
-    def walk(diff, depth):
-        res = []
+    res = []
 
-        deep_indent_size = depth + spaces_count
-        deep_indent = replacer * deep_indent_size
-        current_indent = replacer * depth
+    for key, (status, value) in diff.items():
+        def add(v, symbol):
+            res.append(
+                f'{" " * (depth - 2)}{symbol} {key}: {to_str(v, depth)}'
+            )
 
-        for key, value in diff.items():
-            if isinstance(value, dict):
-                res.append(f'{deep_indent}{key}: '
-                           f'{walk(value, deep_indent_size)}'
-                           )
-            else:
-                res.append(f'{deep_indent}{key}: {value}')
+        if status == 'DICT':
+            res.append(
+                f'{depth * " "}{key}: '
+                f'{{\n{format(value, depth + 4)}\n{" " * (depth + 1)}}}'
+            )
+        elif status == 'ADDED':
+            add(value, '+')
+        elif status == 'REMOVED':
+            add(value, '-')
+        elif status == 'UPDATED':
+            old, new = value
+            add(old, '-')
+            add(new, '+')
+        else:
+            add(value, ' ')
 
-        result = itertools.chain("{", res, [current_indent + "}"])
-        return '\n'.join(result)
+    return '\n'.join(res)
 
-    return walk(diff, 0)
+
+def to_format(diff):
+    return '{\n' + transformation(diff) + '\n}'
