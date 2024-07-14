@@ -3,6 +3,8 @@ def to_str(value):
         return 'true' if value else 'false'
     elif value is None:
         return 'null'
+    elif isinstance(value, int):
+        return value
     elif isinstance(value, dict):
         return "[complex value]"
     return f"'{value}'"
