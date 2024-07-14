@@ -5,7 +5,7 @@ def to_str(value):
         return 'null'
     elif isinstance(value, dict):
         return "[complex value]"
-    return f'"{value}"'
+    return f"'{value}'"
 
 
 def join_path(path, key):

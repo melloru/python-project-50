@@ -22,8 +22,6 @@ def create_diff(file1, file2):
             diff[key] = ('REMOVED', file1[key])
         elif file1.get(key) != file2.get(key):
             diff[key] = ('UPDATED', (file1[key], file2[key]))
-        else:
-            diff[key] = ('UNCHANGED', file1[key])
     return diff
 
 
