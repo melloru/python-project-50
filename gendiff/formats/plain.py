@@ -28,8 +28,6 @@ def format(diff, path):
             old, new = value
             res.append(f'Property {join_path(path, key)} '
                        f'was updated. From {to_str(old)} to {to_str(new)}')
-        else:
-            res.append(f'Property {join_path(path, key)} value was unchanged')
 
     return '\n'.join(res)
 
