@@ -1,6 +1,8 @@
 def to_str(value, depth):
     if isinstance(value, bool):
         return 'true' if value else 'false'
+    elif value == '':
+        return ''
     elif value is None:
         return 'null'
     elif isinstance(value, dict):
@@ -9,8 +11,6 @@ def to_str(value, depth):
             result.append(f'{k}: {to_str(v, depth + 4)}')
         result = f'\n{" " * (depth + 4)}'.join(result)
         return f'{{\n{" " * (depth + 4)}{result}\n{" " * depth}}}'
-    elif value == '':
-        return None
     return value
 
 
