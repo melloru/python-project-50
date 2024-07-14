@@ -20,13 +20,13 @@ def format(diff, path):
             res.append(format(value, [*path, key])
                        )
         elif status == 'ADDED':
-            res.append(f'Property {join_path(path, key)} '
+            res.append(f"Property '{join_path(path, key)}' "
                        f'was added with value: {to_str(value)}')
         elif status == 'REMOVED':
-            res.append(f'Property {join_path(path, key)} was removed')
+            res.append(f"Property '{join_path(path, key)}' was removed")
         elif status == 'UPDATED':
             old, new = value
-            res.append(f'Property {join_path(path, key)} '
+            res.append(f"Property '{join_path(path, key)}' "
                        f'was updated. From {to_str(old)} to {to_str(new)}')
 
     return '\n'.join(res)
