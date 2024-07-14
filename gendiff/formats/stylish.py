@@ -8,7 +8,7 @@ def to_str(value, depth):
         for k, v in value.items():
             result.append(f'{k}: {to_str(v, depth + 4)}')
         result = f'\n{" " * (depth + 4)}'.join(result)
-        return f'{{\n{" " * (depth + 4)}{result}\n{" " * (depth + 1)}}}'
+        return f'{{\n{" " * (depth + 4)}{result}\n{" " * depth}}}'
     elif value == '':
         return None
     return value
@@ -27,7 +27,7 @@ def transformation(diff, depth=4):
         if status == 'DICT':
             res.append(
                 f'{depth * " "}{key}: '
-                f'{{\n{transformation(value, depth + 4)}\n{" " * (depth + 1)}}}'
+                f'{{\n{transformation(value, depth + 4)}\n{" " * depth}}}'
             )
         elif status == 'ADDED':
             add(value, '+')
